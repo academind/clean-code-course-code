@@ -10,7 +10,7 @@ class Rectangle:
         self.width = width
         self.height = height
 
-    def getArea(self):
+    def get_area(self):
         return self.width * self.height
 
     def print_coordinates(self):
