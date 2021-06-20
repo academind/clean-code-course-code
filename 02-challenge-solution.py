@@ -31,5 +31,5 @@ def build_rectangle():
 
 rectangle = build_rectangle()
 
-print(rectangle.getArea())
+print(rectangle.get_area())
 rectangle.print_coordinates()
