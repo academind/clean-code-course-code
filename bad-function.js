@@ -1,26 +1,15 @@
-function renderContent(renderInformation) {
-  const element = renderInformation.element;
-  if (element === 'script' || element === 'SCRIPT') {
+function renderContent({element, attributes, content, root}) {
+  if (element.toLowerCase() === 'script') {
     throw new Error('Invalid element.');
   }
-
-  let partialOpeningTag = '<' + element;
-
-  const attributes = renderInformation.attributes;
-
-  for (const attribute of attributes) {
-    partialOpeningTag =
-      partialOpeningTag + ' ' + attribute.name + '="' + attribute.value + '"';
+  
+  let attributesStr = '';
+  for (const {name, value} of attributes) {
+    attributesStr += ` ${name}="${value}"`;
   }
 
-  const openingTag = partialOpeningTag + '>';
-
-  const closingTag = '</' + element + '>';
-  const content = renderInformation.content;
-
-  const template = openingTag + content + closingTag;
-
-  const rootElement = renderInformation.root;
-
-  rootElement.innerHTML = template;
+  const openingTag = `<${element} ${attributesStr}>`;
+  const closingTag = `</${element}>`;
+  
+  root.innerHTML = openingTag + content + closingTag;
 }
